@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/* Define a div oculta inicialmente */
+#meu_amor {
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Transição suave */
+}
+
+/* Quando a div tiver a classe 'fade-in', ela aparecerá */
+#meu_amor.fade-in {
+  opacity: 1; /* Visível */
+}

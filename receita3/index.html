@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 3</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--div inicialmente vázia-->
+    <div id="meu_amor"></div>
+    <!--botão-->
+    <div id="botao">
+      <button id="botaocarregar">Carregando cervejas...</button>
+    </div>
+  </body>
+
+  <script>
+    let estado = false;
+
+    function carregarDiv() {
+      // Pega o elemento da div
+      let div = document.getElementById("meu_amor");
+
+      if (!estado) {
+        div.innerHTML = `<h1>charset</h1>`;
+        div.classList.add("fade-in"); // Adiciona a classe de fade-in para o efeito
+      } else {
+        div.classList.remove("fade-in"); // Remove o fade-in ao esconder
+        setTimeout(() => {
+          div.innerHTML = "";
+        }, 1000); // Espera 1 segundo para remover o conteúdo (sincronizado com a transição)
+      }
+
+      estado = !estado;
+    }
+
+    let botao = document.getElementById("botaocarregar");
+
+    // Liga o clique do botão para carregar ou limpar a div
+    botao.onclick = carregarDiv;
+  </script>
+</html>
