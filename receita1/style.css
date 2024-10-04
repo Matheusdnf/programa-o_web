@@ -1,0 +1,74 @@
+@charset "UTF_8";
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#estilo {
+  background-color: red;
+  display: flex;
+  margin: auto;
+  width: 40vw;
+  border-radius: 10px;
+  margin-top: 10vh;
+}
+main {
+  margin: auto;
+  text-align: center;
+  margin-top: 8vh;
+}
+#corpo_pinga {
+  background-color: yellow;
+}
+.imagem_cachaca {
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+img {
+  width: 400px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+table,
+th,
+td {
+  margin: 10px;
+  padding-left: 6px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 200px;
+}
+th {
+  background-color: red;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(202, 191, 191);
+}
+tr {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  padding-left: 6px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
