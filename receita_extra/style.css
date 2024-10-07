@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --azul: rgb(31, 31, 190);
+  --cinza: rgb(205, 205, 205);
+}
+
+main {
+  margin-top: 60px;
+}
+
+#apresentacao p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: var(--cinza);
+  text-justify: distribute;
+  padding: 10px;
+  border: none;
+}
+
+.transicao_das_imagens {
+  display: flex; /* Flex para alinhar as imagens em linha */
+}
+
+.transicao_das_imagens img {
+  height: 300px;
+  width: 33.3vw;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.transicao_das_imagens img:hover {
+  transform: scale(1.1); /* Aumenta a imagem */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Adiciona sombra */
+  z-index: 1; /* Coloca a imagem em cima das outras, se necessário */
+}
+.imagem-container {
+  position: relative; /* Necessário para o posicionamento absoluto do texto */
+  overflow: hidden; /* Para evitar que o texto saia do contêiner */
+}
+
+.transicao_das_imagens .button_image {
+  position: absolute; /* Permite que o texto se sobreponha à imagem */
+  top: 85%; /* Posiciona no meio verticalmente */
+  left: 50%; /* Posiciona no meio horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta a posição para centralizar */
+  color: white; /* Cor do texto */
+  font-size: 1rem; /* Tamanho da fonte */
+}
+
+.transicao_das_imagens button {
+  background-color: var(--azul);
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+.transicao_das_imagens button:hover {
+  background-color: white;
+  color: blue;
+  padding: 5px;
+}
+
+.tarefas {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+#impressora {
+  display: flex;
+  padding: 15px;
+  margin: 15px;
+  justify-content: center;
+  justify-items: center;
+}
+
+#impressora .card {
+  padding: 15px;
+  margin: 15px;
+}
