@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 4</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Aperte em algum dos botões abaixo</h1>
+    </header>
+    <main>
+      <div>
+      <div id="cerveja_div">
+        <button id="carregar_cerveja_div">Cerveja Div</button>
+      </div>
+      <div id="cerveja_table">
+        <button id="carregar_cerveja_table">Cerveja Table</button>
+      </div>
+      <div id="ordenar">
+        <button id="ordenar">Ordenar cervejas</button>
+      </div>
+      <div id="embaralhar">
+        <button id="embaralhar_cervejas">Embaralhar Cerveja</button>
+      </div>
+      <div id="resultado"></div>
+      <div>
+    </main>
+  </body>
+
+  <script>
+    let cervejas = ["Guiness", "Desperados", "Becks"];
+    let modoAtual = "";
+
+    function cerveja_div(item) {
+      return `<div class="cerveja_div">${item}</div>`;
+    }
+
+    function cerveja_table(item) {
+      return `<tr><td>${item}</td></tr>`;
+    }
+
+    function carregarDiv() {
+      let resultado = document.getElementById("resultado");
+      let cervejasHtml = cervejas.map(cerveja_div);
+      resultado.innerHTML = `${cervejasHtml.join("\n")}`;
+      modoAtual = "div";
+    }
+
+    function carregarTable() {
+      let resultado = document.getElementById("resultado");
+      let cervejasHtml = cervejas.map(cerveja_table);
+      resultado.innerHTML = `<table><thead><tr><th>Cerveja</th></tr></thead><tbody>${cervejasHtml.join(
+        "\n"
+      )}</tbody></table>`;
+      modoAtual = "tabela";
+    }
+
+    function embaralhar_cervejas() {
+      if (modoAtual === "div" || modoAtual === "tabela") {
+        cervejas.sort(() => Math.random() - 0.5); // Embaralha o vetor de cerveja
+        if (modoAtual === "div") {
+          carregarDiv();
+        } else if (modoAtual === "tabela") {
+          carregarTable();
+        }
+      } else {
+        alert("Por favor, escolha uma visualização antes de embaralhar.");
+      }
+    }
+
+    function ordenar_cerveja() {
+      if (modoAtual === "div" || modoAtual === "tabela") {
+        cervejas.sort();
+        if (modoAtual === "div") {
+          carregarDiv();
+        } else if (modoAtual === "tabela") {
+          carregarTable();
+        }
+      } else {
+        alert("Por favor, escolha uma visualização antes de ordenar.");
+      }
+    }
+
+    let botaoDiv = document.getElementById("carregar_cerveja_div");
+    let botaoTable = document.getElementById("carregar_cerveja_table");
+    let botaoOrdena = document.getElementById("ordenar");
+    let botaoAleatorio = document.getElementById("embaralhar_cervejas");
+
+    botaoDiv.addEventListener("click", carregarDiv);
+    botaoTable.addEventListener("click", carregarTable);
+    botaoOrdena.addEventListener("click", ordenar_cerveja);
+    botaoAleatorio.addEventListener("click", embaralhar_cervejas);
+  </script>
+</html>

@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.cerveja_div {
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(156, 119, 81, 0.882);
+  width: 100px;
+}
+
+table,
+th,
+td {
+  margin: 10px;
+  padding-left: 6px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.101);
+}
+
+tr {
+  background-color: white;
+}
+
+main {
+  justify-content: center;
+  align-items: center;
+}
+tr:hover {
+  background-color: green;
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 5px;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  background-color: rgb(114, 114, 211);
+  color: white;
+}
