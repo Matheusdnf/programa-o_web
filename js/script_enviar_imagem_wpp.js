@@ -25,7 +25,7 @@ async function enviarImagens(imagens, quantidade) {
   // Enviar todas as imagens de uma vez
   for (let i = 0; i < imagens.length * quantidade; i++) {
     enviarComEnter(); // Chama a função para simular Enter e clicar
-    await new Promise((resolve) => setTimeout(resolve, 250)); // Tempo entre envios
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Tempo entre envios
   }
 
   return imagens.length * quantidade; // Retorna o total de imagens enviadas
