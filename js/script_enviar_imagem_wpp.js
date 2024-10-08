@@ -1,16 +1,16 @@
-// Função para enviar imagens
+//imagem é um vetor de imagens
+//quantidade:número de vezes que a imagem será enviada
+//assync pois está esperando a resposta da função
 async function enviarImagens(imagens, quantidade) {
   const main = document.querySelector("#main");
   const inputFile = main.querySelector('input[type="file"]');
 
-  if (!inputFile)
-    throw new Error("Não há um campo de upload de arquivo disponível");
-
   // Loop para enviar cada imagem a quantidade especificada de vezes
-  for (const imagem of imagens) {
+  //arquivo que será upado
+  for (const arquivo of imagens) {
     for (let i = 0; i < quantidade; i++) {
       const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(imagem);
+      dataTransfer.items.add(arquivo);
       inputFile.files = dataTransfer.files;
 
       // Simular o evento de mudança
