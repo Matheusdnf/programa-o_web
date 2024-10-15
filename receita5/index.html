@@ -40,11 +40,11 @@
       const div = document.getElementById("meu amor");
       //callback function map(passando uma função como parametro para outra)
       // no map declara uma variável para utilizar e fazer o mapeamento, sabe onde fazer o map
-      const cervejasHtml = cervejas.map((cervs) => `<h1>${cervs}</h1>`);
+      const cervejasHtml = cervs.map((cervs) => `<h1>${cervs}</h1>`);
       div.innerHTML = `${cervejasHtml.join("\n")}`;
     };
     let botao = document.getElementById("botaoCarregar");
-    botao.addEventListener("click", carregarDiv);
+    botao.addEventListener("click", () => carregarDiv(cervejas));
 
     let botao_auto = document.getElementById("automoveis_div");
     botao_auto.addEventListener("click", carregar_automoveis);
