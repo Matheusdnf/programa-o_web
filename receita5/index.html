@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita 5</title>
+</head>
+<body>
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="meu amor"></div>            
+ </body>   
+ <script>
+    //var- variáveis que podem ser atualizadas durante o desenrolar da aplicação (escopo-global/acessável em qualquer parte)
+    //cont- algo que não será alterado em seu escopo
+    let cervejas = ["Guiness", "Desperados", "Becks"]
+    
+    //const transformar = (item) =>{ (tradicional)
+
+    //quando se passa apenas 1 parametro pode-se retirar os parênteses 
+
+    // const transformar = item =>{
+    //    return `<h1>${item}</h1>` como tem um return dá para encurtar mais ainda
+
+    // const transformar = item =>`<h1>${item}</h1>`; como é uma intrução pequena e sucinta, pode-se passar como parametro do map
+
+    const carregarDiv = ()=>{
+        const div = document.getElementById("meu amor")
+        //callback function map(passando uma função como parametro para outra)
+        // no map declara uma variável para utilizar e fazer o mapeamento, sabe onde fazer o map
+        const cervejasHtml = cervejas.map ((item) =>`<h1>${item}</h1>`); 
+       div.innerHTML = `${cervejasHtml.join("\n")}`
+    }
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", carregarDiv)                 
+ </script>
+</html>
+
+
+
+
