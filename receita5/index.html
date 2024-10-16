@@ -6,10 +6,13 @@
     <title>Receita 5</title>
   </head>
   <body>
-    <div><a href="#" id="botaoCarregar">Carregando cervejas...</a></div>
+    <div><a href="#" id="botaoCarregar">Carregando cervejas</a></div>
     <div><a href="#" id="automoveis_div">Automoveis Div</a></div>
     <div id="embaralhar">
       <button id="embaralhar_qualquer">Embaralhar Um dos Dois</button>
+    </div>
+    <div id="ordenar">
+      <button id="ordenar_qualquer">Ordenar cervejas</button>
     </div>
     <div id="meu amor"></div>
   </body>
@@ -20,13 +23,11 @@
 
     let marca_de_automoveis = ["fiat", "honda", "tesla"];
 
-    let apertado=[];
+    let apertado = [];
 
-    const carregar_qualquer_coisa = vetor => {
+    const carregar_qualquer_coisa = (vetor) => {
       const div = document.getElementById("meu amor");
-      const algo_html = vetor.map(
-        (elementos) => `<h1>${elementos}</h1>`
-      );
+      const algo_html = vetor.map((elementos) => `<h1>${elementos}</h1>`);
       div.innerHTML = `${algo_html.join("\n")}`;
       apertado = vetor;
     };
@@ -39,23 +40,43 @@
     //    return `<h1>${item}</h1>` como tem um return dá para encurtar mais ainda
 
     // const transformar = item =>`<h1>${item}</h1>`; como é uma intrução pequena e sucinta, pode-se passar como parametro do map
-    
 
-
-    function embaralhar_elementos (vetor) {
-        let a = vetor.sort(() => Math.random() - 0.5); // Embaralha o vetor de cerveja
-        console.log(a)
+    const ordenar_elementos = (vetor) => {
+      let a = vetor.sort();
+      if (a.length === 0) {
+        alert("Não há nada para ser ordenado!");
+      } else {
+        console.log(a);
         carregar_qualquer_coisa(a);
       }
-    
+    };
+
+    const embaralhar_elementos = (vetor) => {
+      let a = vetor.sort(() => Math.random() - 0.5); // Embaralha o vetor de cerveja
+      if (a.length === 0) {
+        alert("Não há oq embaralhar!");
+      } else {
+        console.log(a);
+        carregar_qualquer_coisa(a);
+      }
+    };
+
     let botao = document.getElementById("botaoCarregar");
     botao.addEventListener("click", () => carregar_qualquer_coisa(cervejas));
 
     let botao_auto = document.getElementById("automoveis_div");
-    botao_auto.addEventListener("click", () => carregar_qualquer_coisa(marca_de_automoveis));
+    botao_auto.addEventListener("click", () =>
+      carregar_qualquer_coisa(marca_de_automoveis)
+    );
 
     let botaoAleatorio = document.getElementById("embaralhar_qualquer");
-    botaoAleatorio.addEventListener("click", () => {embaralhar_elementos(apertado);}
-    );
+    botaoAleatorio.addEventListener("click", () => {
+      embaralhar_elementos(apertado);
+    });
+
+    let botaoOrdena = document.getElementById("ordenar_qualquer");
+    botaoOrdena.addEventListener("click", () => {
+      ordenar_elementos(apertado);
+    });
   </script>
 </html>
