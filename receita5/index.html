@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Receita 5</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div><a href="#" id="botaoCarregar">Carregando cervejas</a></div>
@@ -14,7 +15,7 @@
     <div id="ordenar">
       <button id="ordenar_qualquer">Ordenar cervejas</button>
     </div>
-    <div id="meu amor"></div>
+    <div id="meu_amor"></div>
   </body>
   <script>
     //var- variáveis que podem ser atualizadas durante o desenrolar da aplicação (escopo-global/acessável em qualquer parte)
@@ -26,7 +27,7 @@
     let apertado = [];
 
     const carregar_qualquer_coisa = (vetor) => {
-      const div = document.getElementById("meu amor");
+      const div = document.getElementById("meu_amor");
       const algo_html = vetor.map((elementos) => `<h1>${elementos}</h1>`);
       div.innerHTML = `${algo_html.join("\n")}`;
       apertado = vetor;
