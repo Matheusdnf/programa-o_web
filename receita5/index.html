@@ -8,6 +8,9 @@
   <body>
     <div><a href="#" id="botaoCarregar">Carregando cervejas...</a></div>
     <div><a href="#" id="automoveis_div">Automoveis Div</a></div>
+    <div id="embaralhar">
+      <button id="embaralhar_qualquer">Embaralhar Um dos Dois</button>
+    </div>
     <div id="meu amor"></div>
   </body>
   <script>
@@ -15,16 +18,17 @@
     //cont- algo que não será alterado em seu escopo
     let cervejas = ["Guiness", "Desperados", "Becks"];
 
-    let cervs = [];
-
     let marca_de_automoveis = ["fiat", "honda", "tesla"];
 
-    const carregar_automoveis = () => {
+    let apertado=[];
+
+    const carregar_qualquer_coisa = vetor => {
       const div = document.getElementById("meu amor");
-      const automoeveis_html = marca_de_automoveis.map(
-        (carro) => `<h1>${carro}</h1>`
+      const algo_html = vetor.map(
+        (elementos) => `<h1>${elementos}</h1>`
       );
-      div.innerHTML = `${automoeveis_html.join("\n")}`;
+      div.innerHTML = `${algo_html.join("\n")}`;
+      apertado = vetor;
     };
 
     //const transformar = (item) =>{ (tradicional)
@@ -35,18 +39,23 @@
     //    return `<h1>${item}</h1>` como tem um return dá para encurtar mais ainda
 
     // const transformar = item =>`<h1>${item}</h1>`; como é uma intrução pequena e sucinta, pode-se passar como parametro do map
+    
 
-    const carregarDiv = (cervs) => {
-      const div = document.getElementById("meu amor");
-      //callback function map(passando uma função como parametro para outra)
-      // no map declara uma variável para utilizar e fazer o mapeamento, sabe onde fazer o map
-      const cervejasHtml = cervs.map((cervs) => `<h1>${cervs}</h1>`);
-      div.innerHTML = `${cervejasHtml.join("\n")}`;
-    };
+
+    function embaralhar_elementos (vetor) {
+        let a = vetor.sort(() => Math.random() - 0.5); // Embaralha o vetor de cerveja
+        console.log(a)
+        carregar_qualquer_coisa(a);
+      }
+    
     let botao = document.getElementById("botaoCarregar");
-    botao.addEventListener("click", () => carregarDiv(cervejas));
+    botao.addEventListener("click", () => carregar_qualquer_coisa(cervejas));
 
     let botao_auto = document.getElementById("automoveis_div");
-    botao_auto.addEventListener("click", carregar_automoveis);
+    botao_auto.addEventListener("click", () => carregar_qualquer_coisa(marca_de_automoveis));
+
+    let botaoAleatorio = document.getElementById("embaralhar_qualquer");
+    botaoAleatorio.addEventListener("click", () => {embaralhar_elementos(apertado);}
+    );
   </script>
 </html>
