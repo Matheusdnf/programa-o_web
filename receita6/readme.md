@@ -4,6 +4,8 @@ JavaScript que seguem a sintaxe JavaScript Object Notation (JSON)
 
 - Não é o objeto de nenhuma classe (Descreve os objetos diretamente(explicitando informações e métodos))
 - Abre/Fecha chaves indica UM objeto
+- uma liguagem e intercâmbio de informação. (objetos Leves)
+- Independe da linguagem
 
 Regras
 
@@ -104,3 +106,11 @@ Os valores dentro do Json também podem ser funções, pelo fato de querendo ou 
    }
 }]
 ```
+
+Escrever objetos em json com moderação, pois ficarão repetidos
+
+# Observação
+
+No caso do scripts em JS com páginas web, usamos a sintaxe JSON diretamente numa atribuição, já estaremos declarando objetos JavaScript e poderemos lidar com eles normalmente.
+
+Se recebermos um texto no formato JSON de uma consulta a algum site ou banco de dados, precisamos chamar um método para fazer a conversão daquele texto em objetos JS.
