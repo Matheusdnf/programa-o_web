@@ -5,5 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Receita 6</title>
   </head>
-  <body></body>
+  <body>
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+
+    <div id="cervejasDiv"></div>
+  </body>
+
+  <script>
+    //cada item do vetor é um objeto
+    // let cervejas = [
+    //   { name: "Guiness" },
+    //   { name: "Desperados" },
+    //   { name: "Becks" },
+    // ];
+
+    //método toString() -> não é a melhor coisa a se fazer
+    // let cervejas = [
+    //   {
+    //     name: "Guiness",
+
+    //     toString: function () {
+    //       return this.name;
+    //     },
+    //   },
+
+    //   {
+    //     name: "Desperados",
+
+    //     toString: function () {
+    //       return this.name;
+    //     },
+    //   },
+
+    //   {
+    //     name: "Becks",
+
+    //     toString: function () {
+    //       return this.name;
+    //     },
+    //   },
+    // ];
+    //cs é um array de cervejas
+
+    // se tem o acesso direto as propriedades na montagem dos elementos de interface gráfica (as marcas html), ali na expressão `<div>${item}</div>`, e vamos fazer esse acesso.
+    let cervejas = [
+      {
+        name: "Guiness",
+        alchol: "10%",
+      },
+
+      {
+        name: "Desperados",
+        alchol: "50%",
+      },
+
+      {
+        name: "Becks",
+        alchol: "100%",
+      },
+    ];
+
+    //forma de acessar atributos de objetos (desestruturação)
+    // const carregarDiv = (cs) => {
+    //   const div = document.getElementById("cervejasDiv");
+
+    //   const itensHtml = cs.map(
+    //     ({ name, alcohol }) => `<div>${name} -- ${alcohol}</div>`
+    //   );
+
+    //   div.innerHTML = `${itensHtml.join("\n")}`;
+    // };
+
+    // const carregarDiv = (cs) => {
+    //   const div = document.getElementById("cervejasDiv");
+
+    //   const itensHtml = cs.map(
+    //     (item) => `<div>${item["name"]} -- ${item["alcohol"]}</div>`
+    //   );
+
+    //   div.innerHTML = `${itensHtml.join("\n")}`;
+    // };
+
+    const carregarDiv = (cs) => {
+      const div = document.getElementById("cervejasDiv");
+
+      const itensHtml = cs.map(
+        (item) => `<div>${item.name} -- ${item.alchol}</div>`
+      );
+
+      div.innerHTML = `${itensHtml.join("\n")}`;
+    };
+
+    let botao = document.getElementById("botaoCarregar");
+
+    botao.addEventListener("click", () => carregarDiv(cervejas));
+  </script>
 </html>
