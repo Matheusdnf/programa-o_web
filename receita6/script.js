@@ -28,13 +28,13 @@ const carregarDiv = (cs, id, nome, alchol, style, ibu) => {
 
   //aplicando undefined buscando evitar possíveis erros
   nome = typeof nome !== "undefined" ? id : "Nome";
-  alcool = typeof alcool !== "undefined" ? Álcool : "Álcool";
-  Style = typeof Style !== "undefined" ? Style : "Style";
+  alchol = typeof alchol !== "undefined" ? alchol : "Álcool";
+  style = typeof style !== "undefined" ? style : "Style";
   ibu = typeof ibu !== "undefined" ? ibu : "ibu";
   const cabecalho = `<tr>
     <th>${nome}</th>
-    <th>${alcool}</th>
-    <th>${Style}</th>
+    <th>${alchol}</th>
+    <th>${style}</th>
     <th>${ibu}</th>
     </tr>`;
   const itensHtml = cs.map(
