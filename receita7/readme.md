@@ -8,6 +8,8 @@ Nesta receita será abordado o consumo de dados online
 
 # Fetch
 
+retorna imediatamente SEM o resultado da requisição (fica esperando o resultado)
+
 - Manipulação de pedidos e respostas.
 - buscar recursos de forma assíncrona através da rede.
 - Retorna um objeto do tipo response (respostas da requisição HTTPS)
