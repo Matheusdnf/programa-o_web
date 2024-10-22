@@ -5,5 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Receita 8</title>
   </head>
-  <body></body>
+  <body>
+    <body>
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+      <div id="cervejasDiv"></div>
+    </body>
+    <script>
+      let cervejas = [];
+      //cs é um array de cervejas
+      const carregarDiv = (cs) => {
+        const div = document.getElementById("cervejasDiv");
+        const itensHtml = cs.map(
+          ({ name, alcohol }) => `<div>${name} -- ${alcohol}</div>`
+        );
+        div.innerHTML = `${itensHtml.join("\n")}`;
+      };
+
+      async function carregarCervejas() {
+        try {
+          let res = await fetch(
+            "https://random-data-api.com/api/v2/beers?size=3"
+          );
+          cervejas = await res.json();
+          carregarDiv(cervejas);
+        } catch (err) {
+          document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
+        }
+      }
+
+      function chegouRespostaDoFetch(res) {
+        document.getElementById(
+          "cervejasDiv"
+        ).innerHTML = `Resposta do fetch() -- ${res}`;
+      }
+
+      function deu_errado_primo(res) {
+        document.getElementById("cervejasDiv").innerHTML = `Deu ruim meu primo`;
+      }
+
+      function carregarCervejas2() {
+        let p = fetch("https://random-data-api.com/api/v2/beers?size=3");
+        document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`;
+        p.then(chegouRespostaDoFetch, deu_errado_primo);
+      }
+
+      let botao = document.getElementById("botaoCarregar");
+
+      botao.addEventListener("click", () => carregarCervejas2());
+    </script>
+  </body>
 </html>
