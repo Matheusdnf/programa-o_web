@@ -22,7 +22,9 @@ retorna imediatamente SEM o resultado da requisição (fica esperando o resultad
 let objetos = await res.json()
 ```
 
-# await
+O async/await é uma nova forma de tratar Promises dentro do nosso código, evitando a criação de cascatas de .then
+
+# await/assync
 
 - só pode ser utilizado em funções assícronas (esperar o retorno de uma promisse (eventual conclussão ou falha de uma operação assícrona (valor não conhecido)) )
   await a gente tem que usar porque o fetch é uma função que faz processamento assíncrono.
