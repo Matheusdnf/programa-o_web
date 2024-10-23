@@ -32,21 +32,35 @@
           document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
         }
       }
+      // const chegouRespostaDoJson = (json) => carregarDiv(cervejas);
 
-      function chegouRespostaDoFetch(res) {
-        document.getElementById(
-          "cervejasDiv"
-        ).innerHTML = `Resposta do fetch() -- ${res}`;
-      }
+      // const chegouRespostaDoFetch = (res) => res.json();
 
-      function deu_errado_primo(res) {
-        document.getElementById("cervejasDiv").innerHTML = `Deu ruim meu primo`;
-      }
+      // function deu_errado_primo(res) {
+      //   document.getElementById("cervejasDiv").innerHTML = `Deu ruim meu primo`;
+      // }
 
       function carregarCervejas2() {
-        let p = fetch("https://random-data-api.com/api/v2/beers?size=3");
+        //função fetch retorna uma promisse a função await serve para esperar a resposta da promisse
+        fetch("https://random-data-api.com/api/v2/beers?size=3")
+          .then(
+            (res) => res.json()
+            // (res) =>
+            //   (document.getElementById(
+            //     "cervejasDiv"
+            //   ).innerHTML = `Deu ruim meu primo`)
+          )
+          .then((json) => carregarDiv(json))
+          .catch(
+            (err) =>
+              (document.getElementById(
+                "cervejasDiv"
+              ).innerHTML = `Deu ruim meu primo`)
+          );
+
         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`;
-        p.then(chegouRespostaDoFetch, deu_errado_primo);
+        //then (resolução da promisse (tratamento dos possíveis erros da mesma))
+        // p.then(chegouRespostaDoFetch, deu_errado_primo);
       }
 
       let botao = document.getElementById("botaoCarregar");
