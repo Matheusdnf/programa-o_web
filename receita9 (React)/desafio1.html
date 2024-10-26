@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita TEste React</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script>
+      //método render
+      //recebe 2 parametros,(construir, mostrar)
+      ReactDOM.render(
+        //id acrescentado a marca h1
+        //React.createElement('h1', {id:'maria-prea'},'React!'),
+        React.createElement(
+          "table",
+          { id: "my-heading" },
+          React.createElement(
+            "tr",
+            null,
+            React.createElement("th", null, "Compania"),
+            React.createElement("th", null, "Contato"),
+            React.createElement("th", null, "País")
+          ),
+          React.createElement(
+            "tr",
+            null,
+            React.createElement("td", null, "Alfreds Futterkiste"),
+            React.createElement("td", null, "Maria Anders"),
+            React.createElement("td", null, "Germany")
+          ),
+          React.createElement(
+            "tr",
+            null,
+            React.createElement("td", null, "Centro comercial Moctezuma"),
+            React.createElement("td", null, "Francisco Chang"),
+            React.createElement("td", null, "Mexico")
+          )
+        ),
+        //o segundo parametro é uma propriedades (como um objeto)
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>
