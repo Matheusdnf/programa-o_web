@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 2 React</title>
+    <script src="libs/babel.js"></script>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      let cervejas = [
+        {
+          name: "Guiness",
+          alchol: "10%",
+          style: "Red Ale",
+          ibu: "15",
+        },
+        {
+          name: "Desperados",
+          alchol: "50%",
+          style: "English IPA",
+          ibu: "50",
+        },
+        {
+          name: "Becks",
+          alchol: "100%",
+          style: "Imperial Stout",
+          ibu: "40",
+        },
+      ];
+
+      const Cabecalho = () => <h1>Minha tabela de bebidas</h1>;
+
+      function TabelaBebidas({ vetor }) {
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Álcool</th>
+                <th>Origem</th>
+                <th>Ibu</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vetor.map((cachaca, index) => (
+                <tr key={index}>
+                  <td>{cachaca.name}</td>
+                  <td>{cachaca.alchol}</td>
+                  <td>{cachaca.style}</td>
+                  <td>{cachaca.ibu}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      }
+
+      function Main() {
+        //primeira variável guarda valor e a segunda guarda o estado
+        //inicia com false pois o botão não foi apertado
+        //mudança de estado
+        const [showTabela, setShowTabela] = React.useState(false);
+
+        const clique = () => {
+          console.log(showTabela);
+          //função prev atualiza o atual valor, e nesse caso altera o valor dele para ser o contrário
+          setShowTabela((prevShowTabela) => !prevShowTabela);
+        };
+
+        return (
+          <main>
+            <Cabecalho />
+            <button onClick={clique}>Aperte no botão</button>
+            {showTabela && <TabelaBebidas vetor={cervejas} />}
+          </main>
+        );
+      }
+
+      ReactDOM.render(<Main />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
