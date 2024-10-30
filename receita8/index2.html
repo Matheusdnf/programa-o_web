@@ -23,27 +23,28 @@
       const div = document.getElementById("cervejasDiv");
 
 
-      const cabecalhoHtml = `<tr>
+      const cabecalhoHtml = 
+      //cabeçalho da tabela
+      `<tr>
           <th>${cabecalho[0]}</th>
           <th>${cabecalho[1]}</th>
           <th>${cabecalho[2]}</th>
           <th>${cabecalho[3]}</th>
       </tr>`;
 
-      const itensHtml = cs
-        .map(
-          (item) => `
-          <tr>
-              <td>${item[cabecalho[0]] || "Desconhecido"}</td>
-              <td>${item[cabecalho[1]] || "Desconhecido"}</td>
-              <td>${item[cabecalho[2]] || "Desconhecido"}</td>
-              <td>${item[cabecalho[3]] || "Desconhecido"}</td>
-          </tr>
-      `
-        )
-        .join("");
+      //conteúdo da tabela
+      //mapeia um vetor e para remover as divisões do vetor o que separa cada conteúdo coloca o join
+      const itensHtml = cs.map((item) => 
+      `<tr>
+            <td>${item[cabecalho[0]] || "Desconhecido"}</td>
+            <td>${item[cabecalho[1]] || "Desconhecido"}</td>
+            <td>${item[cabecalho[2]] || "Desconhecido"}</td>
+            <td>${item[cabecalho[3]] || "Desconhecido"}</td>
+      </tr>`).join("");
+      console.log(itensHtml);
 
       div.innerHTML = `<table>${cabecalhoHtml}${itensHtml}</table>`;
+      //console.log(div.innerHTML);
     };
 
     let bt_cerveja = document.getElementById("botaoCarregar");
@@ -52,7 +53,7 @@
     bt_cerveja.addEventListener("click", () =>
       requizicao_api("https://random-data-api.com/api/v2/beers?size=3", [
         "name",
-        "alchol",
+        "alcohol",
         "style",
         "ibu",
       ])
