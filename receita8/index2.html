@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Receita 7</title>
+    <title>Receita 8</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -22,10 +22,6 @@
     const carregarTabela = (cs, cabecalho) => {
       const div = document.getElementById("cervejasDiv");
 
-      if (cs.length === 0) {
-        div.innerHTML = "<p>Nenhum dado encontrado.</p>";
-        return;
-      }
 
       const cabecalhoHtml = `<tr>
           <th>${cabecalho[0]}</th>
