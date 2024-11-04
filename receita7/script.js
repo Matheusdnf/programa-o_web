@@ -49,7 +49,7 @@ let bt_cafe = document.getElementById("botao_cafe");
 bt_cerveja.addEventListener("click", () =>
   requizicao_api("https://random-data-api.com/api/v2/beers?size=3", [
     "name",
-    "alchol",
+    "alcohol",
     "style",
     "ibu",
   ])
