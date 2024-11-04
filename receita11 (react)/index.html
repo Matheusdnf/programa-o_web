@@ -1,50 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="libs/babel.js"></script>
     <script src="libs/react.js"></script>
     <script src="libs/react-dom.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Receita 3 React</title>
-</head>
-<body>  
+  </head>
+  <body>
     <div id="app"></div>
     <script type="text/babel">
-        //um componenete só pode retornar uma marca html (tag)
-       const TabelaBebidas = () => {
-          return 
+      //componente com FUNÇÃO
+      //NEXTSJS se baseia na relação de criação de funções
+      //um componenete só pode retornar uma marca html (tag)
+      const TabelaBebidas__ = (nome_tabela) => {
+        //após o returno colocar (), para poder retornar as tags que está dentro dele
+        return (
           //essa div está agindo como container
           <div>
-                <h1>Tabela de Bebidas</h1>
-                <table id="tabela" border="1">
-                   <thead>
-                        <tr>
-                            <th>Nome</th><
-                            th>Marca</th>
-                        </tr>
-                   </thead>
-                   <tbody>
-                        <tr>
-                            <td>Havana</td>
-                            <td>Engenho Anísio Santiago</td>
-                        </tr>
-                   </tbody>
-                </table>
+            <h1> {nome_tabela.nome}</h1>
+            <table id="tabela" border="1">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Marca</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Havana</td>
+                  <td>Engenho Anísio Santiago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+
+      //componente com CLASSE
+      class TabelaBebidas extends React.Component {
+        render() {
+          return (
+            <div>
+              <table id="tabela" border="1">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Havana</td>
+                    <td>Engenho Anísio Santiago</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-       }
+          );
+        }
+      }
+      class Cabecalho extends React.Component {
+        render() {
+          return <h1>Tabela de cachaça</h1>;
+        }
+      }
+      //desafio 1
+      //   ReactDOM.render(
+      //     //container div
+      //     <div>
+      //       <Cabecalho />
+      //       <TabelaBebidas />
+      //     </div>,
 
-       
+      //     document.getElementById("app")
+      //   );
 
-       ReactDOM.render(
+      ReactDOM.render(
+        //container div
+        <TabelaBebidas__ nome={"Tabela de Cana"} />,
 
-          <TabelaBebidas/>
-
-          ,
-
-          document.getElementById("app"))
-
-
+        document.getElementById("app")
+      );
     </script>
-</body>
+  </body>
 </html>
