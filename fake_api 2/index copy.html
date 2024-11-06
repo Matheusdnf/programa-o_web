@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extra</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Div para exibir a tabela -->
+    <div id="cervejasDiv"></div>
+    
+    <!-- Formulário para inserir a quantidade -->
+    <form id="formQuantidade">
+      <label for="resposta">Digite a Quantidade de Itens a serem exibidos:</label>
+      <input type="number" id="resposta" name="quantidade" min="1"><br><br>
+
+      <!-- Campo de filtro diretamente no HTML -->
+      <label for="campoFiltro">Filtrar por Título:</label>
+      <input type="text" id="campoFiltro" placeholder="Digite o título para filtrar"><br><br>
+      <label for="campoDestaque">Destacar Texto:</label>
+      <input type="text" id="destaque" placeholder="Destacar texto"> <br><br>
+      <!-- Botão para carregar os dados -->
+      <button id="botaoCartao" type="button">Carregar Tabela</button>
+      
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>

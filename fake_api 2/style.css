@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+table,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  align-items: center;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.101);
+}
+
+tr {
+  background-color: white;
+
+}
+
+td{
+  margin: 20px;
+  padding: 20px;
+}
+th {
+  background-color: rgba(93, 132, 180, 0.888);
+}
+
+tr:hover {
+  background-color: rgb(85, 177, 177);
+}
+.destaque {
+  background-color: yellow; /* Pode mudar para a cor que preferir */
+  font-weight: bold;
+}
+
+
