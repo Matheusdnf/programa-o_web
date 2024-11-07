@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Div para exibir a tabela -->
-    <div id="cervejasDiv"></div>
     
-    <!-- Formulário para inserir a quantidade -->
     <form id="formQuantidade">
       <label for="resposta">Digite a Quantidade de Itens a serem exibidos:</label>
+      <!--Tipo número para evitar que digitem letras-->
       <input type="number" id="resposta" name="quantidade" min="1"><br><br>
 
-      <!-- Campo de filtro diretamente no HTML -->
+      
       <label for="campoFiltro">Filtrar por Título:</label>
       <input type="text" id="campoFiltro" placeholder="Digite o título para filtrar"><br><br>
       <label for="campoDestaque">Destacar Texto:</label>
@@ -24,6 +22,7 @@
       <button id="botaoCartao" type="button">Carregar Tabela</button>
       
     </form>
+    <div id="conteudo"></div>
 
     <script src="script.js"></script>
   </body>

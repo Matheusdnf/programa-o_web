@@ -2,23 +2,25 @@
 let quantidadeAtual = 0;
 let carregando = false; // Para evitar múltiplas requisições simultâneas
 
-// Função para fazer a requisição da API
 async function requizicao_api(link, cabecalho, quantidade) {
   try {
-    const url = `${link}?_quantity=${quantidade}`; // Construa a URL com a quantidade
-    const res = await fetch(url);
+    //link personalizado para definir a quantidade
+    const url = `${link}?_quantity=${quantidade}`; 
+    const resposta = await fetch(url);
 
-    // Verifica se a resposta foi bem-sucedida
-    if (!res.ok) {
+    //verificar se o link está no ar
+    if (!resposta.ok) {
       return alert("Site fora do ar");
     }
+    // Converter para JSON
+    const dados = await resposta.json();
 
-    // Converte a resposta em JSON
-    const data = await res.json();
+    //console.log(dados);
+    //console.log(dados.status);
 
-    // Verifica se os dados têm o formato esperado
-    if (data.data) {
-      carregarTabela(data.data, cabecalho);
+    //verificar se a api esta formatada corretamente
+    if (dados.data) {
+      carregarTabela(dados.data, cabecalho);
     } else {
       alert("Dados não encontrados.");
     }
@@ -29,14 +31,14 @@ async function requizicao_api(link, cabecalho, quantidade) {
 }
 
 // Função para obter a quantidade inicial de itens do input
-const obterQuantidade = () => {
-  const quantidadeInput = document.getElementById("resposta");
-  return parseInt(quantidadeInput.value, 10); // Converte para número inteiro
-};
+// Parseint tranforma uma string em número inteiro 
+//parseInt(string,quantidade de casas)
+const obterQuantidade = () => parseInt(document.getElementById("resposta").value,10);
 
-// Função para carregar a tabela
+
+
 const carregarTabela = (cs, cabecalho) => {
-  const div = document.getElementById("cervejasDiv");
+  const div = document.getElementById("conteudo");
 
   if (cs.length === 0) {
     div.innerHTML = "<p>Nenhum dado encontrado.</p>";

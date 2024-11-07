@@ -39,3 +39,10 @@ tr:hover {
 }
 
 
+#resposta:valid{
+  background-color: white;
+}
+
+#resposta:invalid{
+  background-color: red;
+}
