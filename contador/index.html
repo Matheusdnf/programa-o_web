@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 12 (React)</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="libs/babel.js"></script>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script type="text/babel">
+      //Desestruturação
+      const Contador = () => {
+        const adicionar = () => setButton(showButton + 1);
+        const subtrair = () => setButton(showButton - 1);
+        //1-valor do estado,2-atualiza o estado
+        const [showButton, setButton] = React.useState(0);
+        return (
+          <div>
+            <h1>{showButton}</h1>
+            <button onClick={adicionar}>aumentar</button>
+            <button onClick={subtrair}>descrementar</button>
+          </div>
+        );
+      };
+
+      ReactDOM.render(
+        <Contador />,
+
+        document.getElementById("app")
+      );
+      //objetos estrutuados
+      //   ReactDOM.render(
+      //     <TabelaBebidas nome="Minha tabelita" />,
+
+      //     document.getElementById("app")
+      //   );
+    </script>
+  </body>
+</html>
