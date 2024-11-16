@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receita 12 (React)</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="libs/babel.js"></script>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script type="text/babel">
+      //Desestruturação
+      const TabelaBebidas1 = ({ nome }) => {
+        return (
+          <div>
+            <h1>{nome}</h1>
+
+            <table id="tabela" border="1">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Marca</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Havana</td>
+                  <td>Engenho Anísio Santiago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+      //desetruturação e com objetos estruturados
+      //desestruturação de vetores
+      const TabelaBebidas = ({
+        titulo,
+        cabecalhos,
+        conteudo,
+        muitasLinhas,
+      }) => {
+        return (
+          <div>
+            {/*Desestruturação*/}
+            <h1>{titulo}</h1>
+
+            <table id="tabela" border="1">
+              <thead>
+                <tr>
+                  {/*objetos desestruturados*/}
+                  {/*deve-se adicionar as keys para o react saber quais itens sofreream alterações*/}
+                  {cabecalhos.map((header, index) => (
+                    <th key={index}>{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {muitasLinhas.map((lines, index) => (
+                  <tr key={index}>
+                    {lines.map((content, contentIndex) => (
+                      <td key={contentIndex}>{content}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+
+      const valoresCabecalhos = ["Nome", "Marca", "ombro", "joelho", "pé"];
+      const valoresConteudos = [
+        ["Havana", "Engenho Anísio Santiago", "valor1", "valor2", "valor3"],
+        ["Cachaça 51", "Cachaça 51", "valorA", "valorB", "valorC"],
+      ];
+
+      ReactDOM.render(
+        <TabelaBebidas
+          titulo="minha tabela de cana"
+          cabecalhos={valoresCabecalhos}
+          conteudo={valoresConteudos}
+          muitasLinhas={valoresConteudos}
+        />,
+
+        document.getElementById("app")
+      );
+      //objetos estrutuados
+      //   ReactDOM.render(
+      //     <TabelaBebidas nome="Minha tabelita" />,
+
+      //     document.getElementById("app")
+      //   );
+    </script>
+  </body>
+</html>
