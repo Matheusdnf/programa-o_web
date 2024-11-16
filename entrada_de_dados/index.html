@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script src="libs/babel.js"></script>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script type="text/babel">
+      const Main = () => {
+        // UseState para armazenar o valor do email e telefone
+        const [email, setEmail] = React.useState("");
+        const [telefone, setTelefone] = React.useState("");
+        const [validemail, setValidemail] = React.useState(null);
+        const [validatelefone, setValidatelefone] = React.useState(null);
+
+        // Lida com a entrada de dados ao digitar
+        const handleChange = (e, setalgo) => {
+          // Atualiza o valor ao passar da digitação
+          setalgo(e.target.value);
+        };
+
+        // Função para validar email
+        const validarEmail = (email) => {
+          return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
+        };
+
+        // Função para validar telefone
+        const validartelefone = (telefone) =>
+          /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/.test(
+            telefone
+          );
+
+        const handleSubmit = (e) => {
+          //evitar da página ficar carregando várias vezes
+          e.preventDefault();
+          console.log(email);
+          console.log(telefone);
+
+          entrada_email(email);
+          entrada_telefone(telefone);
+        };
+
+        const entrada_email = (email) => {
+          const valida_email = validarEmail(email);
+          setValidemail(valida_email);
+        };
+
+        const entrada_telefone = (telefone) => {
+          const valida_telefone = validartelefone(telefone);
+          setValidatelefone(valida_telefone);
+        };
+
+        // Função para mudar o estado do input (valid ou invalid)
+        const mudar_estado_imput = (valid) =>
+          valid === true ? "valid" : valid === false ? "invalid" : "";
+
+        React.useEffect(() => {
+          $("#cell").mask("(00) 00000-0000"); // Aplica a máscara no telefone
+        }, []);
+
+        return (
+          <form onSubmit={handleSubmit}>
+            <div id="caixa_email">
+              <label htmlFor="email">Digite seu email:</label>
+              <input
+                type="text"
+                id="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => handleChange(e, setEmail)} // Atualiza o estado com o valor digitado
+                className={mudar_estado_imput(validemail)} // Aplica a classe valid ou invalid para email
+              />
+            </div>
+            <div id="caixa_telefone">
+              <label htmlFor="telefone">Digite seu Telefone:</label>
+
+              <input
+                type="text"
+                name="celular"
+                id="cell"
+                placeholder="(00) 00000-0000"
+                onChange={(e) => handleChange(e, setTelefone)} // Atualiza o estado com o valor digitado
+                className={mudar_estado_imput(validatelefone)} // Aplica a classe valid ou invalid para telefone
+              />
+            </div>
+            <div id="Confirmar">
+              <input type="submit" value="Validar" />
+            </div>
+            <h3>Dados Passados</h3>
+            <p>Email digitado: {email}</p>
+            <p>Telefone digitado: {telefone}</p>
+          </form>
+        );
+      };
+
+      // Renderiza o componente no elemento com id='app'
+      ReactDOM.render(<Main />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+#caixa_email {
+  margin-bottom: 8px;
+  padding: 10px;
+}
+#caixa_telefone {
+  padding: 10px;
+}
+#Confirmar {
+  margin-left: 8px;
+}
+
+#cell {
+  width: 100px;
+  height: 20px;
+
+  margin-left: 10px;
+  border-radius: 5px;
+}
+#email {
+  width: 500px;
+  height: 20px;
+
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+#email::placeholder {
+  color: gray;
+}
+
+#email.valid {
+  border-color: rgb(114, 255, 114);
+}
+
+#email.invalid {
+  border-color: red;
+  color: black;
+  font-weight: bold;
+  background-color: rgb(178, 93, 93);
+}
+
+#telefone {
+  width: 500px;
+  height: 20px;
+
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+#cell::placeholder {
+  color: gray;
+}
+
+#cell.valid {
+  border-color: rgb(114, 255, 114);
+}
+
+#cell.invalid {
+  border-color: red;
+  color: black;
+  font-weight: bold;
+  background-color: rgb(178, 93, 93);
+}
