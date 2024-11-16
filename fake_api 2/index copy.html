@@ -7,20 +7,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    
     <form id="formQuantidade">
-      <label for="resposta">Digite a Quantidade de Itens a serem exibidos:</label>
+      <label for="resposta"
+        >Digite a Quantidade de Itens a serem exibidos:</label
+      >
       <!--Tipo número para evitar que digitem letras-->
-      <input type="number" id="resposta" name="quantidade" min="1"><br><br>
+      <input
+        type="number"
+        id="resposta"
+        name="quantidade"
+        min="1"
+      /><br /><br />
 
-      
       <label for="campoFiltro">Filtrar por Título:</label>
-      <input type="text" id="campoFiltro" placeholder="Digite o título para filtrar"><br><br>
+      <input
+        type="text"
+        id="campoFiltro"
+        placeholder="Digite o título para filtrar"
+      /><br /><br />
       <label for="campoDestaque">Destacar Texto:</label>
-      <input type="text" id="destaque" placeholder="Destacar texto"> <br><br>
+      <input type="text" id="destaque" placeholder="Destacar texto" />
+      <br /><br />
       <!-- Botão para carregar os dados -->
       <button id="botaoCartao" type="button">Carregar Tabela</button>
-      
     </form>
     <div id="conteudo"></div>
 
