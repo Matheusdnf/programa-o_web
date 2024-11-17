@@ -61,3 +61,18 @@
   font-weight: bold;
   background-color: rgb(178, 93, 93);
 }
+
+#nome::placeholder {
+  color: gray;
+}
+
+#nome.valid {
+  border-color: rgb(114, 255, 114);
+}
+
+#nome.invalid {
+  border-color: red;
+  color: black;
+  font-weight: bold;
+  background-color: rgb(178, 93, 93);
+}

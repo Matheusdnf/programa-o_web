@@ -16,16 +16,52 @@
     <script src="libs/react-dom.js"></script>
     <script type="text/babel">
       const Main = () => {
-        // UseState para armazenar o valor do email e telefone
+        // Classe Usuario com método toJSON
+        class Usuario {
+          constructor(nome, telefone, email) {
+            this.nome = nome;
+            this.telefone = telefone;
+            this.email = email; // Atribui corretamente o email
+          }
+
+          toJSON() {
+            return {
+              Usuario: {
+                nome: this.nome,
+                telefone: this.telefone,
+                email: this.email,
+              },
+            };
+          }
+        }
+
+        // Estados para armazenar os valores dos campos
+        const [nome, setNome] = React.useState("");
         const [email, setEmail] = React.useState("");
         const [telefone, setTelefone] = React.useState("");
         const [validemail, setValidemail] = React.useState(null);
         const [validatelefone, setValidatelefone] = React.useState(null);
+        const [validanome, setvalidanome] = React.useState(null);
 
         // Lida com a entrada de dados ao digitar
         const handleChange = (e, setalgo) => {
-          // Atualiza o valor ao passar da digitação
           setalgo(e.target.value);
+          console.log(e.target.value);
+        };
+
+        // Função para validar nome
+        const validarnome = (nome) => {
+          // Verifica se o nome tem dois espaços consecutivos
+          if (nome.indexOf("  ") !== -1) {
+            return false; // Se encontrar dois espaços consecutivos, retorna falso
+          }
+          if (nome.length === 0) {
+            return false; // Se o nome estiver vazio, retorna falso
+          }
+          if (/\d/.test(nome)) {
+            return false; // Verifica se o nome contém números (não pode ter)
+          }
+          return true; // Se passar em todas as verificações, retorna verdadeiro
         };
 
         // Função para validar email
@@ -39,21 +75,39 @@
             telefone
           );
 
+        // Função para tratar o envio do formulário
         const handleSubmit = (e) => {
-          //evitar da página ficar carregando várias vezes
-          e.preventDefault();
-          console.log(email);
-          console.log(telefone);
+          //evitar o recaregamento da página
 
+          e.preventDefault();
+
+          // Valida os dados antes de criar o usuário
+          entrada_nome(nome);
           entrada_email(email);
           entrada_telefone(telefone);
+
+          // Verifica se todos os dados são válidos
+          if (validanome && validemail && validatelefone) {
+            const usi = new Usuario(nome, telefone, email); // Passa corretamente o nome, telefone e email
+            const usijson = usi.toJSON();
+            console.log(usijson); // Exibe o JSON do usuário no console
+            alert("Usuário cadastrado com sucesso!");
+          }
         };
 
+        // Função para validar o nome
+        const entrada_nome = (nome) => {
+          const valida_nome = validarnome(nome);
+          setvalidanome(valida_nome);
+        };
+
+        // Função para validar o email
         const entrada_email = (email) => {
           const valida_email = validarEmail(email);
           setValidemail(valida_email);
         };
 
+        // Função para validar o telefone
         const entrada_telefone = (telefone) => {
           const valida_telefone = validartelefone(telefone);
           setValidatelefone(valida_telefone);
@@ -69,6 +123,18 @@
 
         return (
           <form onSubmit={handleSubmit}>
+            <div id="caixa_nome">
+              <label htmlFor="nome">Digite seu nome:</label>
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                value={nome}
+                placeholder="matheus ..."
+                onChange={(e) => handleChange(e, setNome)} // Atualiza o estado com o valor digitado
+                className={mudar_estado_imput(validanome)} // Aplica a classe valid ou invalid para nome
+              />
+            </div>
             <div id="caixa_email">
               <label htmlFor="email">Digite seu email:</label>
               <input
@@ -82,7 +148,6 @@
             </div>
             <div id="caixa_telefone">
               <label htmlFor="telefone">Digite seu Telefone:</label>
-
               <input
                 type="text"
                 name="celular"
@@ -96,13 +161,13 @@
               <input type="submit" value="Validar" />
             </div>
             <h3>Dados Passados</h3>
+            <p>Nome digitado: {nome}</p>
             <p>Email digitado: {email}</p>
             <p>Telefone digitado: {telefone}</p>
           </form>
         );
       };
 
-      // Renderiza o componente no elemento com id='app'
       ReactDOM.render(<Main />, document.getElementById("app"));
     </script>
   </body>
