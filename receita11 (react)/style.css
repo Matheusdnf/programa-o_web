@@ -28,3 +28,8 @@ th {
 tr:hover {
   background-color: rgb(85, 177, 177);
 }
+
+img{
+  width: 1000px;
+  height: 500px;
+}

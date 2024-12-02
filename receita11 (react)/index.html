@@ -63,6 +63,15 @@
           );
         }
       }
+
+      class Imagem extends React.Component{
+        render(){
+          return (
+            <img src="https://c.files.bbci.co.uk/16FC3/production/_123874149_1cerveja.jpg" alt="Cerveja"/>
+          );
+        }
+      }
+      
       class Cabecalho extends React.Component {
         render() {
           return <h1>Tabela de cachaça</h1>;
@@ -81,7 +90,10 @@
 
       ReactDOM.render(
         //container div
-        <TabelaBebidas__ nome={"Tabela de Cana"} />,
+        <div>
+        <TabelaBebidas__ nome={"Tabela de Cana"} />
+        <Imagem/>
+      </div>,
 
         document.getElementById("app")
       );
