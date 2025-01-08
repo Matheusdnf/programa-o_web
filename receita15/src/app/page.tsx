@@ -13,10 +13,11 @@ const transformar = (vetor: Movie) => (
   </div>
 );
 
-async function requisicao(busca: String) {
+async function requisicao(busca: String, tipo: string) {
+  const tipoSearchky = tipo || "movie";
   const titleSearchKey = busca || "bagdad";
   const res = await fetch(
-    `http://www.omdbapi.com/?i=tt3896198&apikey=9eabd38d&s=${titleSearchKey}`
+    `http://www.omdbapi.com/?i=tt3896198&apikey=9eabd38d&s=${titleSearchKey}&type=${tipo}`
   );
 
   const data = await res.json();
@@ -26,7 +27,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <div>{requisicao("avengers")}</div>
+        <div>{requisicao("gravity", "series")}</div>
         <h1>Viva Santana!</h1>
         {/* Através disso vc só carregará o que for importante */}
         {/* Forma nova utilizando do link fornecido pelo react */}
