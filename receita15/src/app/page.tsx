@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 interface Movie {
   Title: string;
   Year: String;
+  Poster: String;
   // S - tipo de objeto
   // s - tipo primitivo, o que deve ser utilizado na key
   imdbID: string;
@@ -10,6 +12,16 @@ interface Movie {
 const transformar = (vetor: Movie) => (
   <div key={vetor.imdbID}>
     - {vetor.Title} | {vetor.Year} | --- {vetor.imdbID}
+    <div>
+      <Image
+        src={vetor.Poster}
+        alt={`Poster do filme ${vetor.Title}`} // Alt é obrigatório
+        width={300}
+        height={300}
+        placeholder="blur" // Opcional: carrega com um placeholder
+        blurDataURL="/placeholder.png" // Opcional: defina um blur padrão
+      />
+    </div>
   </div>
 );
 

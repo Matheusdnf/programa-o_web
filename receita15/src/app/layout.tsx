@@ -16,7 +16,7 @@ export default function RootLayout({ children }: RootLayout) {
     // Colocar coisas que serão aparecidas em várias partes do site (deixando mais leve e rápido)
     <html lang="en">
       <body>
-        <h1>Página Principal</h1>
+        <h1>Página Principal De Filmes</h1>
         {children}
       </body>
     </html>
