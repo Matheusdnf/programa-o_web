@@ -1,60 +1,86 @@
-//página que será renderizada no navegador/esta visível e renderizado no mesmo
-//Todos os componentes do react/next são por default server components
-
 "use client";
 import { useState } from "react";
-import Form from "next/form";
 
 export default function Home() {
   const [resultMovies, setResultMovies] = useState([]);
-  async function handleAction(formData) {
-    const titleSearchKey = formData.Get("titleSearchKey");
-    const httpsres = await fetch(
-      `http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`
-    );
-    const resp = await httpsres.json();
-    setResultMovies(resp.Search || []);
+  const [titleSearchKey, setTitleSearchKey] = useState(""); // Estado para a chave de pesquisa
+  const [buttonpress, Setbuttonpress] = useState(false);
+
+  async function handleAction(event) {
+    //impede que o formulário fique se recarregando
+    event.preventDefault();
+    try {
+      //botão desativa
+      Setbuttonpress(true);
+      const httpsres = await fetch(
+        `http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`
+      );
+      const resp = await httpsres.json();
+      setResultMovies(resp.Search || []); // Define os filmes no estado
+    } catch (error) {
+      return <h1>Erro ao Pesquisar o filme</h1>;
+    } finally {
+      //botão ativa
+      Setbuttonpress(false);
+    }
   }
+
   return (
     <div>
-      {/* o formulário recebe a função da requizição */}
-      <MovieForm handleAction={handleAction} />
+      <MovieForm
+        handleAction={handleAction}
+        titleSearchKey={titleSearchKey}
+        setTitleSearchKey={setTitleSearchKey}
+        buttonpress={buttonpress}
+      />
 
       <MovieTable movies={resultMovies} />
     </div>
   );
 }
 
-export function MovieForm({ handleAction }) {
-  //função de manipulação
-  //essa função enxerga tudo da função MovieForm - acessar todos os parâmetros (quando a função de manipulação é feita na função
-  //mais baixa)
-
-  //ESSA FUNÇÃO DEVE RECEBER UM PARÂMETRO (SEM EVENTO)
-  //EXEMPLO DE UTILIZAÇÃO
-  //   function handleAction(formData) {
-  //     console.log(formData.get("titleSearchKey"));
-  //   }
-
+export function MovieForm({
+  handleAction,
+  titleSearchKey,
+  setTitleSearchKey,
+  buttonpress,
+}) {
   return (
-    <Form action={handleAction}>
+    <form onSubmit={handleAction}>
       <label>Nome do Filme</label>
-      <input id="idTitleSearchKey" name="titleSearchKey" />
-      <button type="submit">Pesquisar</button>
-    </Form>
+      <input
+        id="idTitleSearchKey"
+        name="titleSearchKey"
+        value={titleSearchKey}
+        //pegar toda a mudança no caracter
+        onChange={(e) => setTitleSearchKey(e.target.value)}
+      />
+      <button type="submit" disabled={buttonpress}>
+        {buttonpress ? "Pesquisando" : "Pesquisar"}
+      </button>
+    </form>
   );
 }
 
 export function MovieTable({ movies }) {
+  if (movies.length === 0) {
+    return <h3>Nenhum Filme Encontrado</h3>;
+  }
   return (
     <div>
-      <div>
-        {movies.map((m) => (
-          <div key={m.imdbID}>
+      {movies.map((m) => (
+        <div key={m.imdbID}>
+          <h4>
             {m.Title} --- {m.Year}
-          </div>
-        ))}
-      </div>
+          </h4>
+          <img
+            //!== compara o valor e retorna um booleano
+            src={m.Poster !== "N/A" ? m.Poster : "./img/invalid.jpg"}
+            alt={m.Title}
+            style={{ width: "200px", height: "auto" }}
+          />
+        </div>
+      ))}
     </div>
   );
 }
