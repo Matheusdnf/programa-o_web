@@ -1,37 +1,89 @@
-import Link from "next/link";
-import { Componente_arquivo, Componente_arquivo2 } from "./teste/page";
-import Pagina4 from "./teste/[name]/page";
-import style from "./styles/link.module.css";
+"use client";
 
-export default function Principal() {
+import { useState } from "react";
+import { card } from "./styles/card.module.css";
+import formStyle from "./styles/form.module.css";
+export default function Home() {
+  const [resultMovies, setResultMovies] = useState([]);
+  const [titleSearchKey, setTitleSearchKey] = useState(""); // Estado para a chave de pesquisa
+  const [buttonpress, Setbuttonpress] = useState(false);
+
+  async function handleAction(event) {
+    //impede que o formulário fique se recarregando
+    event.preventDefault();
+    try {
+      //botão desativa
+      Setbuttonpress(true);
+      const httpsres = await fetch(
+        `http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`
+      );
+      const resp = await httpsres.json();
+      setResultMovies(resp.Search || []); // Define os filmes no estado
+    } catch (error) {
+      return <h1>Erro ao Pesquisar o filme</h1>;
+    } finally {
+      //botão ativa
+      Setbuttonpress(false);
+    }
+  }
+
   return (
     <div>
-      <h1>Receita NEXT</h1>
-      <div className="teste">
-        <Componente_arquivo />
-        <Componente_arquivo2 />
-      </div>{" "}
-      <br></br>
-      <div className="teste">
-        <Pagina4 textinho="Componente Escrito em Outra Página" />
-      </div>
-      <MariaPrea />
-      {/*o url é a pasta*/}
-      <Link href="/teste" className={style.link}>
-        Página 2
-      </Link>
-      <br></br>
-      <Link href="/movieSearch" className={style.link}>
-        Formulário
-      </Link>
-      <br></br>
-      <Link href="/teste/name" className={style.link}>
-        Página 3
-      </Link>
+      <MovieForm
+        handleAction={handleAction}
+        titleSearchKey={titleSearchKey}
+        setTitleSearchKey={setTitleSearchKey}
+        buttonpress={buttonpress}
+      />
+
+      <MovieTable movies={resultMovies} />
     </div>
   );
 }
 
-export function MariaPrea() {
-  return <h2>Morreu Maria Preá...</h2>;
+export function MovieForm({
+  handleAction,
+  titleSearchKey,
+  setTitleSearchKey,
+  buttonpress,
+}) {
+  return (
+    <form onSubmit={handleAction}>
+      <label className={formStyle.label}> Nome do Filme</label>
+      <input
+        className={formStyle.input}
+        id="idTitleSearchKey"
+        name="titleSearchKey"
+        value={titleSearchKey}
+        //pegar toda a mudança no caracter
+        onChange={(e) => setTitleSearchKey(e.target.value)}
+      />
+      <button classNametype="submit" disabled={buttonpress}>
+        {buttonpress ? "Pesquisando" : "Pesquisar"}
+      </button>
+    </form>
+  );
+}
+
+export function MovieTable({ movies }) {
+  if (movies.length === 0) {
+    return <h3>Nenhum Filme Encontrado</h3>;
+  }
+  return (
+    <div>
+      {movies.map((m) => (
+        <div key={m.imdbID} className={card}>
+          <h4>
+            {m.Title} --- {m.Year}
+          </h4>
+          <img
+            //!== compara o valor e retorna um booleano
+            src={m.Poster !== "N/A" ? m.Poster : "./img/invalid.jpg"}
+            alt={m.Title}
+            style={{ width: "200px", height: "auto" }}
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
