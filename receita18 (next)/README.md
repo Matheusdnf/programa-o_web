@@ -1,36 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Uma api nada mais é do que uma rota em um sistema Web
 
-## Getting Started
+Diferenças
 
-First, run the development server:
+- uma rota com o nome do arquivo sendo page,tem o objetivo de ser uma tela que possa ser acessada por um usuário em seu navegador web,então precisa retornar uma página react/html, que saiba ser tranformada em interface gráfica, default retornando marcas jsx
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- uma arquito routet.js leva o nome de _API ENDPOINT_, tem por objetivo servir dados ao programa de computador através de um código js, mas pode ser qualquer programa desde que saiba se comunincar via protocolo http.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  - Nunca ponha um arquivo route.js e page.js no mesmo diretório, para n dar conflito \*
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* Nome da Função Precisar Ser GET
+* GET - Usamos o GET quando queremos dar acesso a informações, sem modificar nenhuma mutação, sem modificar nenhum dado
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Código com informação sensível deve ficar do lado do servidor
