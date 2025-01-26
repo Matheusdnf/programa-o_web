@@ -1,7 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import { card } from "./styles/card.module.css";
+import container from "./styles/card.module.css";
 import formStyle from "./styles/form.module.css";
 export default function Home() {
   const [resultMovies, setResultMovies] = useState([]);
@@ -70,7 +70,7 @@ export function MovieTable({ movies }) {
     return <h3>Nenhum Filme Encontrado</h3>;
   }
   return (
-    <div>
+    <div className={container.container}>
       {movies.map((m) => (
         <div key={m.imdbID} className={card}>
           <h4>
