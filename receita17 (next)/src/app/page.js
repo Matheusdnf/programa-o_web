@@ -58,7 +58,7 @@ export function MovieForm({
         //pegar toda a mudança no caracter
         onChange={(e) => setTitleSearchKey(e.target.value)}
       />
-      <button type="submit" disabled={buttonpress}>
+      <button className={formStyle.button} type="submit" disabled={buttonpress}>
         {buttonpress ? "Pesquisando" : "Pesquisar"}
       </button>
     </form>

@@ -1,3 +1,13 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Ajusta a largura mínima de cada card */
+  gap: 16px; /* Espaço entre os cards */
+  padding: 16px; /* Espaço interno em volta dos cards */
+}
+
 .card {
   background-color: #ffffff;
   border-radius: 12px;
