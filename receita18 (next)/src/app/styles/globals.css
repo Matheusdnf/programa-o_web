@@ -1,0 +1,11 @@
+.teste {
+  border-radius: 10px;
+  background-color: red;
+  width: 26vw; /* Tamanho flexível em relação à largura da viewport */
+  height: 15vh; /* Tamanho flexível em relação à altura da viewport */
+  padding: 10px;
+}
+
+.teste:hover {
+  background-color: aquamarine;
+}

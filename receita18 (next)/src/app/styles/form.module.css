@@ -1,0 +1,29 @@
+.label {
+  font-size: 16px;
+  margin: 5px;
+}
+
+.input {
+  border-radius: 3px;
+  padding: 2px;
+  margin-right: 5px;
+  border: 1px solid #7c7c7c;
+}
+
+.button {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: blue;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.button:disabled {
+  background-color: grey;
+}
+
+.button:hover {
+  background-color: grey;
+}
