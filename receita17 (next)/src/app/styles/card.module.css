@@ -1,5 +1,7 @@
 .container {
+  /* deixa de ficar em uma linha */
   display: flex;
+  /* pular para a próxima linha, se organizar em outras linhas */
   flex-wrap: wrap;
   gap: 15px;
 }
