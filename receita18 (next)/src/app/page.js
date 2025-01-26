@@ -1,95 +1,89 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+"use client";
+import { useState } from "react";
+import { card } from "./styles/card.module.css";
+import container from "./styles/card.module.css";
+import formStyle from "./styles/form.module.css";
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [resultMovies, setResultMovies] = useState([]);
+  const [titleSearchKey, setTitleSearchKey] = useState(""); // Estado para a chave de pesquisa
+  const [buttonpress, Setbuttonpress] = useState(false);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  async function handleAction(event) {
+    //impede que o formulário fique se recarregando
+    event.preventDefault();
+    try {
+      //botão desativa
+      Setbuttonpress(true);
+      const httpsres = await fetch(
+        `/api/searchmovies?titleSearchKey=${titleSearchKey}`
+      );
+      const resp = await httpsres.json();
+      setResultMovies(resp.Search || []); // Define os filmes no estado
+    } catch (error) {
+      return <h1>Erro ao Pesquisar o filme</h1>;
+    } finally {
+      //botão ativa
+      Setbuttonpress(false);
+    }
+  }
+
+  return (
+    <div>
+      <MovieForm
+        handleAction={handleAction}
+        titleSearchKey={titleSearchKey}
+        setTitleSearchKey={setTitleSearchKey}
+        buttonpress={buttonpress}
+      />
+
+      <MovieTable movies={resultMovies} />
+    </div>
+  );
+}
+
+export function MovieForm({
+  handleAction,
+  titleSearchKey,
+  setTitleSearchKey,
+  buttonpress,
+}) {
+  return (
+    <form onSubmit={handleAction}>
+      <label className={formStyle.label}> Nome do Filme</label>
+      <input
+        className={formStyle.input}
+        id="idTitleSearchKey"
+        name="titleSearchKey"
+        value={titleSearchKey}
+        //pegar toda a mudança no caracter
+        onChange={(e) => setTitleSearchKey(e.target.value)}
+      />
+      <button className={formStyle.button} type="submit" disabled={buttonpress}>
+        {buttonpress ? "Pesquisando" : "Pesquisar"}
+      </button>
+    </form>
+  );
+}
+
+export function MovieTable({ movies }) {
+  if (movies.length === 0) {
+    return <h3>Nenhum Filme Encontrado</h3>;
+  }
+  return (
+    <div className={container.container}>
+      {movies.map((m) => (
+        <div key={m.imdbID} className={card}>
+          <h4>
+            {m.Title} --- {m.Year}
+          </h4>
+          <img
+            //!== compara o valor e retorna um booleano
+            src={m.Poster !== "N/A" ? m.Poster : "./img/invalid.jpg"}
+            alt={m.Title}
+            style={{ width: "200px", height: "auto" }}
+          />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ))}
     </div>
   );
 }
